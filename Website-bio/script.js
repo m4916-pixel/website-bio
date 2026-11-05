@@ -105,7 +105,7 @@ shareButton.addEventListener("click", async () => {
 
 
 // =========================================
-// GALERI KEGIATAN & LIGHTBOX MODAL
+// JENIS PELAYANAN & MODAL PANEL LAYANAN
 // =========================================
 
 const filterButtons = document.querySelectorAll(".gallery-filter-btn");
@@ -121,12 +121,19 @@ const lightboxCounter = document.getElementById("lightbox-counter");
 const lightboxTitle = document.getElementById("lightbox-title");
 const lightboxDesc = document.getElementById("lightbox-desc");
 
+// Elemen 3 Tab Panel (Tentang, Pengajuan Layanan, Dokumentasi)
+const tabButtons = document.querySelectorAll(".service-tab-btn");
+const tabPanes = document.querySelectorAll(".service-pane");
+const paneTentangContent = document.getElementById("pane-tentang-content");
+const panePengajuanContent = document.getElementById("pane-pengajuan-content");
+
 let currentActiveFilter = "all";
 let currentVisibleItems = [...galleryItems];
 let currentLightboxIndex = 0;
+let currentActiveTab = "tentang";
 let lastFocusedElement = null;
 
-// 1. FILTER KATEGORI GALERI
+// 1. FILTER KATEGORI PELAYANAN
 function applyFilter(category) {
   currentActiveFilter = category;
 
@@ -157,7 +164,34 @@ filterButtons.forEach((btn) => {
   });
 });
 
-// 2. LIGHTBOX MODAL
+// 2. NAVIGASI 3 TAB PANEL LAYANAN (Tentang, Pengajuan, Dokumentasi)
+function switchTab(targetTab) {
+  currentActiveTab = targetTab;
+
+  tabButtons.forEach((btn) => {
+    const isSelected = btn.dataset.tab === targetTab;
+    btn.classList.toggle("active", isSelected);
+    btn.setAttribute("aria-selected", isSelected ? "true" : "false");
+  });
+
+  tabPanes.forEach((pane) => {
+    if (pane.id === `pane-${targetTab}`) {
+      pane.classList.remove("hidden");
+      pane.classList.add("active");
+    } else {
+      pane.classList.add("hidden");
+      pane.classList.remove("active");
+    }
+  });
+}
+
+tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    switchTab(btn.dataset.tab);
+  });
+});
+
+// 3. UPDATE KONTEN MODAL PANEL LAYANAN
 function updateLightboxContent(index) {
   if (currentVisibleItems.length === 0) return;
 
@@ -173,15 +207,40 @@ function updateLightboxContent(index) {
   const targetItem = currentVisibleItems[currentLightboxIndex];
   const thumb = targetItem.querySelector(".gallery-thumb");
   const title = targetItem.querySelector(".gallery-item-title");
-  const desc = targetItem.querySelector(".gallery-item-desc");
   const tag = targetItem.querySelector(".gallery-item-tag");
 
-  lightboxImg.src = thumb.src;
-  lightboxImg.alt = thumb.alt || title.textContent;
-  lightboxTitle.textContent = title.textContent;
-  lightboxDesc.textContent = desc.textContent;
-  lightboxTag.textContent = tag.textContent;
-  lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentVisibleItems.length}`;
+  // Isi data umum di header
+  if (lightboxImg && thumb) {
+    lightboxImg.src = thumb.src;
+    lightboxImg.alt = thumb.alt || (title ? title.textContent : "");
+  }
+  if (lightboxTitle && title) {
+    lightboxTitle.textContent = title.textContent;
+  }
+  if (lightboxTag && tag) {
+    lightboxTag.textContent = tag.textContent;
+  }
+  if (lightboxCounter) {
+    lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentVisibleItems.length}`;
+  }
+
+  // Isi data panel 1: Tentang Layanan
+  const dataTentang = targetItem.querySelector(".data-tentang");
+  if (paneTentangContent && dataTentang) {
+    paneTentangContent.innerHTML = dataTentang.innerHTML;
+  }
+
+  // Isi data panel 2: Pengajuan Layanan
+  const dataPengajuan = targetItem.querySelector(".data-pengajuan");
+  if (panePengajuanContent && dataPengajuan) {
+    panePengajuanContent.innerHTML = dataPengajuan.innerHTML;
+  }
+
+  // Isi data panel 3: Dokumentasi
+  const dataDokumentasi = targetItem.querySelector(".data-dokumentasi");
+  if (lightboxDesc && dataDokumentasi) {
+    lightboxDesc.innerHTML = dataDokumentasi.innerHTML;
+  }
 }
 
 function openLightbox(item) {
@@ -190,6 +249,8 @@ function openLightbox(item) {
   if (index === -1) return;
 
   updateLightboxContent(index);
+  switchTab("tentang"); // Selalu buka tab Tentang terlebih dahulu
+
   lightbox.hidden = false;
   document.body.style.overflow = "hidden";
   lightboxClose.focus();
@@ -213,7 +274,7 @@ function showNextPhoto() {
   updateLightboxContent(currentLightboxIndex + 1);
 }
 
-// Event Listeners untuk Item Galeri
+// Event Listeners untuk Item Galeri/Layanan
 galleryItems.forEach((item) => {
   item.addEventListener("click", () => {
     openLightbox(item);
@@ -227,7 +288,7 @@ galleryItems.forEach((item) => {
   });
 });
 
-// Event Listeners untuk Navigasi & Tutup Lightbox
+// Event Listeners untuk Navigasi & Tutup Modal
 if (lightboxClose) {
   lightboxClose.addEventListener("click", closeLightbox);
 }
@@ -250,7 +311,7 @@ if (lightboxNext) {
   });
 }
 
-// Navigasi Keyboard (Escape, ArrowLeft, ArrowRight) untuk Desktop
+// Navigasi Keyboard (Escape, ArrowLeft, ArrowRight, 1, 2, 3) untuk Desktop
 document.addEventListener("keydown", (e) => {
   if (lightbox.hidden) return;
 
@@ -260,6 +321,12 @@ document.addEventListener("keydown", (e) => {
     showPrevPhoto();
   } else if (e.key === "ArrowRight") {
     showNextPhoto();
+  } else if (e.key === "1") {
+    switchTab("tentang");
+  } else if (e.key === "2") {
+    switchTab("pengajuan");
+  } else if (e.key === "3") {
+    switchTab("dokumentasi");
   }
 });
 
