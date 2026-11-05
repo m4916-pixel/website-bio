@@ -156,6 +156,8 @@ svg {
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================================
@@ -274,6 +276,161 @@ svg {
   width: 24px;
   border-radius: 5px;
   background: var(--orange);
+}
+
+/* =========================================
+   OFFICE INFO & SCHEDULE CARD
+   ========================================= */
+
+.profile-sidebar {
+  width: 100%;
+}
+
+.main-content {
+  width: 100%;
+}
+
+.office-card {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.office-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(67, 179, 57, 0.15);
+  border: 1px solid rgba(67, 179, 57, 0.3);
+  color: #BDE8B7;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.status-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #43B339;
+  box-shadow: 0 0 0 0 rgba(67, 179, 57, 0.7);
+  animation: status-pulse-anim 2s infinite;
+}
+
+@keyframes status-pulse-anim {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(67, 179, 57, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(67, 179, 57, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(67, 179, 57, 0);
+  }
+}
+
+.office-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.office-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #BDE8B7;
+  margin-top: 1px;
+}
+
+.office-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.office-text strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
+.office-text small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-top: 1px;
+}
+
+/* =========================================
+   SECTION HEADERS
+   ========================================= */
+
+.links-section {
+  margin-top: 4px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(67, 179, 57, 0.16);
+  border: 1px solid rgba(67, 179, 57, 0.35);
+  color: #BDE8B7;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.section-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.section-heading {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 4.5vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #FFFFFF;
+}
+
+.section-subheading {
+  margin: 5px 0 16px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
 }
 
 /* =========================================
@@ -1005,46 +1162,25 @@ svg {
 }
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE DESIGN (GADGET & DESKTOP)
    ========================================= */
 
-@media (min-width: 600px) {
-  body {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 52px;
-    padding-bottom: 36px;
-  }
-
-  .profile-section {
-    margin-bottom: 32px;
-  }
-
-  .link-list {
-    gap: 15px;
-  }
-
-  .link-card {
-    min-height: 82px;
-    padding: 16px 18px;
-  }
-}
-
+/* 1. Gadget Layar Kecil (Smartphone <= 360px) */
 @media (max-width: 360px) {
   body {
-    padding: 26px 14px 20px;
+    padding: 22px 12px 18px;
   }
 
   .link-card {
     gap: 10px;
-    padding: 13px 12px;
+    padding: 12px 12px;
+    min-height: 72px;
   }
 
   .link-icon {
-    flex-basis: 40px;
-    width: 40px;
-    height: 40px;
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
   }
 
   .link-copy strong {
@@ -1060,13 +1196,7 @@ svg {
     width: 24px;
     height: 24px;
   }
-}
 
-/* =========================================
-   ACCESSIBILITY: REDUCE MOTION
-   ========================================= */
-
-@media (max-width: 360px) {
   .gallery-grid {
     gap: 8px;
   }
@@ -1081,6 +1211,309 @@ svg {
 
   .gallery-item-desc {
     font-size: 10px;
+  }
+
+  .office-card {
+    padding: 12px 12px;
+  }
+}
+
+/* 2. Gadget Tablet (Tablet Portrait & Layar Sedang, 600px - 991px) */
+@media (min-width: 600px) and (max-width: 991px) {
+  body {
+    padding: 38px 24px 30px;
+  }
+
+  .page-shell {
+    max-width: 700px;
+  }
+
+  .office-card {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .link-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .link-card {
+    min-height: 82px;
+    padding: 16px 18px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .share-button {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+/* 3. Komputer & Laptop (Desktop / Laptop >= 992px) */
+@media (min-width: 992px) {
+  body {
+    padding: 48px 36px 36px;
+    background:
+      radial-gradient(
+        ellipse at 25% 0%,
+        rgba(44, 91, 73, 0.45),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 85% 45%,
+        rgba(36, 123, 44, 0.22),
+        transparent 50%
+      ),
+      var(--background);
+  }
+
+  .aurora-blob {
+    width: min(52vw, 760px);
+    filter: blur(115px);
+    opacity: 0.42;
+  }
+
+  .page-shell {
+    max-width: 1180px;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    column-gap: 38px;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  /* Kolom Kiri: Sidebar Profil Sticky */
+  .profile-sidebar {
+    position: sticky;
+    top: 36px;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .profile-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile-section {
+    margin-bottom: 0;
+    padding: 34px 26px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border-radius: 24px;
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .profile-image-wrap {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  #profile-name {
+    font-size: 28px;
+  }
+
+  #profile-name span {
+    font-size: 13.5px;
+  }
+
+  .profile-bio {
+    font-size: 13.5px;
+    max-width: 300px;
+  }
+
+  .office-card {
+    margin-top: 24px;
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+  }
+
+  .office-text strong {
+    font-size: 12px;
+  }
+
+  .office-text small {
+    font-size: 11.5px;
+  }
+
+  /* Kolom Kanan: Konten Utama */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .section-header {
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .section-heading {
+    font-size: 24px;
+  }
+
+  .section-subheading {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+
+  .links-section {
+    margin-top: 0;
+  }
+
+  .link-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .link-card {
+    min-height: 86px;
+    padding: 18px 20px;
+  }
+
+  .link-icon {
+    flex-basis: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
+
+  .link-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .link-copy strong {
+    font-size: 15px;
+  }
+
+  .link-copy small {
+    font-size: 12px;
+  }
+
+  .gallery-section {
+    margin-top: 0;
+  }
+
+  .gallery-header {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .gallery-filters {
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-item {
+    border-radius: 18px;
+  }
+
+  .gallery-item-title {
+    font-size: 13px;
+  }
+
+  .gallery-item-desc {
+    font-size: 11px;
+    -webkit-line-clamp: 2;
+  }
+
+  /* Share Section di Desktop */
+  .share-section {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .share-button {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+
+  /* Lightbox Modal di Desktop */
+  .lightbox-content {
+    max-width: 840px;
+    border-radius: 24px;
+  }
+
+  .lightbox-media-wrap {
+    aspect-ratio: 16 / 9.5;
+    max-height: 520px;
+  }
+
+  .lightbox-nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .lightbox-nav-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightbox-caption {
+    padding: 20px 24px;
+    gap: 8px;
+  }
+
+  .lightbox-title {
+    font-size: 18px;
+  }
+
+  .lightbox-desc {
+    font-size: 13.5px;
+  }
+
+  /* Footer Spanning Full Width di Desktop */
+  .site-footer {
+    grid-column: 1 / -1;
+    margin-top: 52px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* 4. Layar Desktop Ekstra Lebar (>= 1280px) */
+@media (min-width: 1280px) {
+  .page-shell {
+    max-width: 1240px;
+    grid-template-columns: 380px minmax(0, 1fr);
+    column-gap: 42px;
+  }
+
+  .link-list {
+    gap: 18px;
+  }
+
+  .gallery-grid {
+    gap: 18px;
   }
 }
 

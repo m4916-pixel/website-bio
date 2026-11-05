@@ -250,7 +250,7 @@ if (lightboxNext) {
   });
 }
 
-// Navigasi Keyboard (Escape, ArrowLeft, ArrowRight)
+// Navigasi Keyboard (Escape, ArrowLeft, ArrowRight) untuk Desktop
 document.addEventListener("keydown", (e) => {
   if (lightbox.hidden) return;
 
@@ -262,3 +262,46 @@ document.addEventListener("keydown", (e) => {
     showNextPhoto();
   }
 });
+
+// Navigasi Touch / Usap Layar (Swipe) pada Gadget
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+if (lightbox) {
+  lightbox.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    },
+    { passive: true }
+  );
+
+  lightbox.addEventListener(
+    "touchend",
+    (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleLightboxSwipe();
+    },
+    { passive: true }
+  );
+}
+
+function handleLightboxSwipe() {
+  const horizontalDiff = touchEndX - touchStartX;
+  const verticalDiff = touchEndY - touchStartY;
+
+  // Pastikan gesture lebih dominan horizontal daripada vertikal
+  if (Math.abs(horizontalDiff) > 40 && Math.abs(horizontalDiff) > Math.abs(verticalDiff)) {
+    if (horizontalDiff < 0) {
+      // Usap ke kiri -> Foto berikutnya
+      showNextPhoto();
+    } else {
+      // Usap ke kanan -> Foto sebelumnya
+      showPrevPhoto();
+    }
+  }
+}

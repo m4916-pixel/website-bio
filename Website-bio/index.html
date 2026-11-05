@@ -40,45 +40,99 @@
   </div>
 
   <main class="page-shell">
-    <section class="profile-section" aria-labelledby="profile-name">
+    <!-- KOLOM KIRI DI DESKTOP / PROFIL ATAS DI GADGET -->
+    <aside class="profile-sidebar">
+      <section class="profile-section" aria-labelledby="profile-name">
 
-      <div class="profile-image-wrap">
-        <!-- Ganti images/profile.jpg dengan foto profil atau logo KUA -->
-        <img
-          class="profile-image"
-          src="images/profile.jpg"
-          alt="Foto profil atau logo resmi KUA Makale"
-          width="112"
-          height="112"
-          fetchpriority="high"
-        >
-        <span class="profile-status" aria-label="Profil layanan KUA Makale">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m5 12 4 4L19 6"
-              fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </div>
+        <div class="profile-image-wrap">
+          <!-- Ganti images/profile.jpg dengan foto profil atau logo KUA -->
+          <img
+            class="profile-image"
+            src="images/profile.jpg"
+            alt="Foto profil atau logo resmi KUA Makale"
+            width="112"
+            height="112"
+            fetchpriority="high"
+          >
+          <span class="profile-status" aria-label="Profil layanan KUA Makale">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"
+                fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
 
-      <p class="eyebrow">KEMENTERIAN AGAMA RI</p>
+        <p class="eyebrow">KEMENTERIAN AGAMA RI</p>
 
-      <!-- Ubah nama instansi di bagian ini -->
-      <h1 id="profile-name">
-        KUA Makale
-        <span>Kementerian Agama Kabupaten Tana Toraja</span>
-      </h1>
+        <!-- Ubah nama instansi di bagian ini -->
+        <h1 id="profile-name">
+          KUA Makale
+          <span>Kementerian Agama Kabupaten Tana Toraja</span>
+        </h1>
 
-      <p class="profile-bio">
-        Melayani dengan Integritas dan Sepenuh Hati
-      </p>
+        <p class="profile-bio">
+          Melayani dengan Integritas dan Sepenuh Hati
+        </p>
 
-      <div class="profile-divider" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </section>
+        <div class="profile-divider" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
 
-    <nav class="link-list" aria-label="Kanal digital KUA Makale">
+        <!-- Info Jam Operasional & Layanan (Menyesuaikan Desktop & Gadget) -->
+        <div class="office-card" aria-label="Informasi Pelayanan KUA Makale">
+          <div class="office-badge">
+            <span class="status-pulse" aria-hidden="true"></span>
+            <span>Pelayanan Resmi KUA Makale</span>
+          </div>
+
+          <div class="office-item">
+            <span class="office-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </span>
+            <div class="office-text">
+              <strong>Jam Layanan Kantor</strong>
+              <small>Senin – Kamis 07.30–16.00 | Jumat 07.30–16.30 WITA</small>
+            </div>
+          </div>
+
+          <div class="office-item">
+            <span class="office-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <div class="office-text">
+              <strong>Wilayah Kerja</strong>
+              <small>Kecamatan Makale, Tana Toraja, Sulawesi Selatan</small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- KOLOM KANAN DI DESKTOP / KONTEN UTAMA DI GADGET -->
+    <div class="main-content">
+      <!-- Section Kanal Digital -->
+      <section class="links-section" aria-labelledby="links-heading">
+        <div class="section-header">
+          <span class="section-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            KANAL DIGITAL RESMI
+          </span>
+          <h2 id="links-heading" class="section-heading">Layanan &amp; Komunikasi</h2>
+          <p class="section-subheading">Akses cepat kanal resmi konsultasi dan informasi publik KUA Makale</p>
+        </div>
+
+        <nav class="link-list" aria-label="Kanal digital KUA Makale">
 
       <!-- Ubah URL dan teks tombol pada masing-masing tautan -->
       <a
@@ -198,6 +252,7 @@
         </span>
       </a>
     </nav>
+      </section>
 
     <!-- =========================================
          GALERI KEGIATAN KUA MAKALE
@@ -421,6 +476,7 @@
 
       <p class="share-feedback" id="share-feedback" role="status"
         aria-live="polite"></p>
+    </div>
     </div>
 
     <footer class="site-footer">
